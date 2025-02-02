@@ -8,8 +8,8 @@
 int main()
 {   
     int numPad = 2;
-    int origRows = 3;
-    int origCols = 4;
+    int origRows = 2;
+    int origCols = 3;
     int numRows = origRows + numPad, numCols = origCols + numPad; // add paddings
     std::vector<std::vector<int>> graph(numRows, std::vector<int>(numCols, -1));
 
@@ -54,10 +54,10 @@ int main()
         std::cout << i->first << ": " << i->second << '\n';
     */
     std::set<int> visited;
-    std::set<int> notVisited;
+    
 
     int route = 0;
-    for(int i = 0; i< 1; i++)
+    for(int i = 0; i< keys.size(); i++)
     {   
         visited.insert(i);
 
@@ -66,17 +66,24 @@ int main()
         {
             auto val1 = i->first;
             auto val2 = i->second;
+            //visited.insert(val2);
+            //visited.insert(val1);
 
             std::cout << "=== outer loop ===" << std::endl;
             std::cout << "val1=" << val1 <<std::endl;
             std::cout << "val2=" << val2 <<std::endl;
-            while(val2 > val1)
+            std::cout << "visited earlier = " <<bool(visited.count(val2)) << std::endl;
+            std::cout << visited.count(val2) <<std::endl;
+            while(val2 > val1 && visited.count(val2) == 0 )
             {
                 auto range = connectivity.equal_range(val2);
+                std::cout << visited.count(val2) <<std::endl;
                 for (auto i = range.first; i != range.second; ++i)
                 {
                     val1 = i->first;
                     val2 = i->second;
+                    visited.insert(val1);
+                    //visited.insert(val2);
                     
                     std::cout << "=== inner loop ===" << std::endl;
                     std::cout << "val1=" << val1 <<std::endl;
