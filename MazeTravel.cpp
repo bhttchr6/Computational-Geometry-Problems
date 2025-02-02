@@ -55,9 +55,11 @@ int main()
     */
     std::set<int> visited;
     
+    
 
     int route = 0;
-    for(int i = 0; i< keys.size(); i++)
+    int flag = 0;
+    for(int i = 0; i< 1; i++)
     {   
         visited.insert(i);
 
@@ -74,7 +76,7 @@ int main()
             std::cout << "val2=" << val2 <<std::endl;
             std::cout << "visited earlier = " <<bool(visited.count(val2)) << std::endl;
             std::cout << visited.count(val2) <<std::endl;
-            while(val2 > val1 && visited.count(val2) == 0 )
+            while(val2 > val1 /*&& visited.count(val2) == 0*/ )
             {
                 auto range = connectivity.equal_range(val2);
                 std::cout << visited.count(val2) <<std::endl;
@@ -88,15 +90,41 @@ int main()
                     std::cout << "=== inner loop ===" << std::endl;
                     std::cout << "val1=" << val1 <<std::endl;
                     std::cout << "val2=" << val2 <<std::endl;
+                    /*
                     if(val2 == keys.size()-1 )
                     {
                         std::cout << "****route found****" << std::endl;
                         route = route +1;
                     }
+                    */
                     if(val2 > val1)
                     {
+                        auto range = connectivity.equal_range(val2);
+                        for (auto i = range.first; i != range.second; ++i)
+                        {
+                            val1 = i->first;
+                            val2 = i->second;
+                            std::cout << "=== inner most loop ===" << std::endl;
+                            std::cout << "val1=" << val1 <<std::endl;
+                            std::cout << "val2=" << val2 <<std::endl;
+
+                            if(val2 == keys.size()-1 )
+                            {
+                                std::cout << "****route found****" << std::endl;
+                                route = route +1;
+                            }
+
+                        }
+
+                    }
+                    /*
+                    if(val2 > val1)
+                    {   
+                        
                         break;
                     }
+                    */
+
                 }
                  
 
