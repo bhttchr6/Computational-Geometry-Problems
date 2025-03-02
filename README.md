@@ -10,3 +10,9 @@ A very good learning resource for understanding ray tracing, particularly how to
 
 `geometry.cpp` consists of a C++ program to check whether a point lies inside(including the boundary) of a triangle or outside. A good resource is the book [Mathematics for Computer Graphics](https://www.profajaypashankar.com/wp-content/uploads/2018/09/Mathematics-for-Computer-Graphics-Fifth-Edition.pdf). 
 
+`fibonacci.cpp` is a unique `shared_ptr` based implementation for generating Fibonaci numbers. It just needs to store two numbers to generate the entire series. 
+
+`smartptrs.cpp` is a tutorial/very basic module to learn and play with smart pointers. 
+
+`collision.cpp` checks whether two axis-aligned bounding boxes are colliding or not. 
+
